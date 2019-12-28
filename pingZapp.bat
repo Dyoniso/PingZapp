@@ -24,11 +24,17 @@ IF %M%==1 GOTO ipfind
 IF %M%==2 GOTO loop
 IF %M%==3 GOTO address
 IF %M%==4 GOTO reload
+IF %M%==6 GOTO ipfind3
 :ipfind
 SET /P P= *pingZapp/link:
 IF %P%==exit GOTO reload 
 IF %P%==4 GOTO reload 
-IF %P%==%P% GOTO ipfind2
+IF %P%==%P% GOTO ipfind3
+:ipfind3
+set /a num=(%Random% %%9)+1
+color %num%
+ping -t www.google.com -n 1
+goto ipfind3
 :ipfind2
 set /a num=(%Random% %%9)+1
 color %num%
